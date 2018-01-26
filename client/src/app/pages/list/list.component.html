@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="jumbotron" [ngStyle]="{'background-image':'url(assets/images/background.png)'}">
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    </div>
+</div>
+
+<div class="container">
+  
+    <form class="form-inline">
+    
+      <div class="form-group">
+        <label for="searchDoc">Search</label>
+        <input type="text" 
+          class="form-control m-2" 
+          id="searchDoc" 
+          name="searchDoc" 
+          [(ngModel)]="searchKey" 
+          #searchDoc="ngModel"
+          placeholder="Search document"
+        />
+        <button type="submit" class="btn btn-primary m-2">Search</button>
+      </div>
+    </form>
+
+
+  <div class="list-group">
+    <a href="javascript:"
+      class="list-group-item list-group-item-action flex-column align-items-start"
+      *ngFor="let doc of getSearchResult()"
+      (click)="showDoc(doc.id)"
+    >
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{doc.title}}</h5>
+        <small class="text-muted">3 days ago</small>
+      </div>
+      <p class="mb-1">{{doc.comment}}</p>
+    </a>
+  </div>
+
+</div>

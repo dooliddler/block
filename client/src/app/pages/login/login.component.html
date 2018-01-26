@@ -1,0 +1,56 @@
+
+<div class="container">
+    
+  <form #loginForm="ngForm" novalidate>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input id="email" name="email" class="form-control"
+          required minlength="4" forbiddenName="bob"
+          [(ngModel)]="loginInfo.email" #email="ngModel" />
+        <small *ngIf="email.invalid && (email.dirty || email.touched)" class="form-text text-danger">
+
+          <div *ngIf="email.errors.required">
+              Email is required.
+          </div>
+          <div *ngIf="email.errors.minlength">
+              Email must be at least 4 characters long.
+          </div>
+          <div *ngIf="email.errors.forbiddenName">
+              Email cannot be Bob.
+          </div>
+
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control"
+          required minlength="4" forbiddenName="bob"
+          [(ngModel)]="loginInfo.password" #password="ngModel" />
+        <small *ngIf="password.invalid && (password.dirty || password.touched)" class="form-text text-danger">
+
+          <div *ngIf="password.errors.required">
+              Password is required.
+          </div>
+          <div *ngIf="password.errors.minlength">
+              Password must be at least 4 characters long.
+          </div>
+          <div *ngIf="password.errors.forbiddenName">
+              Password cannot be Bob.
+          </div>
+
+        </small>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="loginRemember">
+        <label class="form-check-label" for="loginRemember">Check me out</label>
+      </div>
+
+      <div class="alert alert-danger mt-3" *ngIf="loginfailed">
+        Please input fields!
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-3" (click)="onLogin(loginForm)" >Submit</button>
+    </form>
+
+</div>
